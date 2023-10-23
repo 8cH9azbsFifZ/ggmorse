@@ -84,16 +84,19 @@ make
 ./bin/ggmorse-gui
 ```
 
-### Emscripten
+### Emscripten (WASM)
 
 ```bash
-git clone https://github.com/ggerganov/ggmorse --recursive
-cd ggmorse
-mkdir build && cd build
+#git clone https://github.com/ggerganov/ggmorse --recursive
+#cd ggmorse
+git submodule init && git submodule update
+mkdir build-wasm && cd build-wasm
 emcmake cmake ..
 make
+docker build -f bin/Dockerfile-emscripten bin/. -t ggmorse
+docker run --rm -it -p 80:80 ggmorse 
 ```
 
 [changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-ggmorse%20v@PROJECT_VERSION@-dummy
+[changelog-badge]: https://img.shields.io/badge/changelog-ggmorse%20v0.1.0-dummy
 [license]: ./LICENSE
