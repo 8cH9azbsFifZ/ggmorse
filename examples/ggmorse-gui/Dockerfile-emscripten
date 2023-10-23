@@ -1,0 +1,10 @@
+# Base image
+FROM nginx:alpine
+
+# Copy the Wasm module to the nginx default HTML directory
+COPY ./ggmorse-gui/ /usr/share/nginx/html
+COPY ggmorse-gui.data /usr/share/nginx/html
+COPY ggmorse-gui.wasm /usr/share/nginx/html
+COPY ggmorse-gui.js /usr/share/nginx/html
+
+#docker build -f Dockerfile-emscripten -t morse .
